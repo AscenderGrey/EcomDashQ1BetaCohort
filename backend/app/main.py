@@ -20,6 +20,7 @@ from app.routers import (
     insights_router,
     shops_router,
 )
+from app.routers.analytics import router as analytics_router
 
 # Configure logging before anything else
 configure_logging()
@@ -99,6 +100,7 @@ def create_app() -> FastAPI:
     app.include_router(insights_router, prefix="/api")
     app.include_router(dashboard_router, prefix="/api")
     app.include_router(code_analysis_router, prefix="/api")
+    app.include_router(analytics_router)  # Analytics router has its own /api/v1/analytics prefix
 
     logger.info(
         "Application created",
