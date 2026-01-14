@@ -39,12 +39,12 @@ services:
         sync: false
       - key: SHOPIFY_APP_URL
         sync: false
-      - key: OPENAI_API_KEY
-        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false  # Required - DeepSeek via OpenRouter
       - key: RESEND_API_KEY
-        sync: false
+        sync: false  # Optional - for email notifications
       - key: SENTRY_DSN
-        sync: false
+        sync: false  # Optional - for error tracking
       - key: ALLOWED_ORIGINS
         value: https://admin.shopify.com,https://ecomdash.onrender.com
     healthCheckPath: /health
@@ -84,10 +84,10 @@ services:
         sync: false
       - key: ENCRYPTION_KEY
         sync: false
-      - key: OPENAI_API_KEY
-        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false  # Required - DeepSeek via OpenRouter
       - key: RESEND_API_KEY
-        sync: false
+        sync: false  # Optional - for email notifications
     autoDeploy: true
 
   # ===========================================
@@ -144,9 +144,9 @@ envVarGroups:
         sync: false
       - key: SHOPIFY_API_SECRET
         sync: false
-      - key: OPENAI_API_KEY
-        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false  # Required - DeepSeek via OpenRouter
       - key: RESEND_API_KEY
-        sync: false
+        sync: false  # Optional
       - key: SENTRY_DSN
-        sync: false
+        sync: false  # Optional
