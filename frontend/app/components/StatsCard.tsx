@@ -49,10 +49,12 @@ export function StatsCard({
           {suffix}
         </Text>
 
-        <Text as="span" variant="bodySm" tone={comparisonColor}>
-          {isPositive ? "+" : ""}
-          {comparison.toFixed(1)}% vs last week
-        </Text>
+        {comparison !== 0 && (
+          <Text as="span" variant="bodySm" tone={comparisonColor}>
+            {isPositive ? "+" : ""}
+            {comparison.toFixed(1)}% vs last week
+          </Text>
+        )}
       </BlockStack>
     </Card>
   );

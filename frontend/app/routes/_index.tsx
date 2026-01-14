@@ -1,4 +1,4 @@
-import { Page, Layout, Card, Text, BlockStack, InlineStack, Badge } from "@shopify/polaris";
+import { Page, Layout, Card, Text, BlockStack, InlineStack, InlineGrid, Badge } from "@shopify/polaris";
 import { TrendingUpIcon, PackageIcon, ReceiptIcon } from "@shopify/polaris-icons";
 import { useDashboardStats } from "../services/api";
 import { StatsCard } from "../components/StatsCard";
@@ -9,11 +9,11 @@ export default function Dashboard() {
   const { data: stats, isLoading } = useDashboardStats();
 
   return (
-    <Page title="Dashboard">
+    <Page title="Dashboard" subtitle="AI-powered insights for your store">
       <Layout>
         {/* Stats Cards Row */}
         <Layout.Section>
-          <InlineStack gap="400" wrap={false}>
+          <InlineGrid columns={{ xs: 1, sm: 2, md: 3 }} gap="400">
             <StatsCard
               title="Revenue"
               value={stats?.yesterdayRevenue ?? 0}
@@ -37,7 +37,7 @@ export default function Dashboard() {
               loading={isLoading}
               icon={PackageIcon}
             />
-          </InlineStack>
+          </InlineGrid>
         </Layout.Section>
 
         {/* Main Content */}
