@@ -46,7 +46,7 @@ services:
       - key: SENTRY_DSN
         sync: false  # Optional - for error tracking
       - key: ALLOWED_ORIGINS
-        value: https://admin.shopify.com,https://ecomdash.onrender.com
+        value: https://admin.shopify.com,https://ecomdash-app.onrender.com
     healthCheckPath: /health
     autoDeploy: true
     scaling:
@@ -94,7 +94,7 @@ services:
   # Frontend Web Service (React Router 7 SSR)
   # ===========================================
   - type: web
-    name: ecomdash-frontend
+    name: ecomdash-app
     runtime: docker
     dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
