@@ -130,7 +130,7 @@ databases:
     databaseName: ecomdash
     user: ecomdash
     region: oregon
-    plan: starter  # $7/mo - 1GB storage, 256MB RAM
+    plan: basic-256mb  # ~$7/mo - Flexible plan with 256MB RAM
     ipAllowList: []  # Allow from all Render services
 
 
