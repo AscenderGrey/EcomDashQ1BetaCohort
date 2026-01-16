@@ -3,14 +3,17 @@ import type { DashboardStats, PaginatedInsights, RevenueChartData, Insight } fro
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
+// Demo shop UUID for development/testing
+const DEMO_SHOP_UUID = "00000000-0000-0000-0000-000000000001";
+
 // Get shop ID from session or context
 function getShopId(): string {
   // In production, this would come from Shopify App Bridge or session
   // Guard against SSR - sessionStorage only exists in browser
   if (typeof window === "undefined") {
-    return "demo-shop-id";
+    return DEMO_SHOP_UUID;
   }
-  return sessionStorage.getItem("shop_id") || "demo-shop-id";
+  return sessionStorage.getItem("shop_id") || DEMO_SHOP_UUID;
 }
 
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
