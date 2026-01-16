@@ -1,5 +1,7 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { AppProvider } from "@shopify/polaris";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 import enTranslations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import "./styles/global.css";
@@ -23,10 +25,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  // Create QueryClient once per component instance (SSR-safe)
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            // Disable automatic refetching during SSR
+            staleTime: 60 * 1000,
+            refetchOnWindowFocus: false,
+          },
+        },
+      })
+  );
+
   return (
-    <AppProvider i18n={enTranslations}>
-      <Outlet />
-    </AppProvider>
+    <QueryClientProvider client={queryClient}>
+      <AppProvider i18n={enTranslations}>
+        <Outlet />
+      </AppProvider>
+    </QueryClientProvider>
   );
 }
 
