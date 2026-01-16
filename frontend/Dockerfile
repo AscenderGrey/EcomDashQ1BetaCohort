@@ -1,7 +1,7 @@
 # EcomDash V2 Frontend Dockerfile
 
 # Development stage
-FROM node:20-alpine as development
+FROM node:20-slim AS development
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ EXPOSE 3000
 CMD ["npm", "run", "dev"]
 
 # Build stage
-FROM node:20-alpine as build
+FROM node:20-slim AS build
 
 WORKDIR /app
 
@@ -30,7 +30,7 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM node:20-alpine as production
+FROM node:20-slim AS production
 
 WORKDIR /app
 
