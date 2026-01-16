@@ -33,6 +33,11 @@ def create_engine() -> AsyncEngine:
     if database_url.startswith("postgresql://"):
         database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
 
+    # Log the sanitized URL for debugging (hide password)
+    import re
+    sanitized = re.sub(r':([^:@]+)@', ':***@', database_url)
+    print(f"[DATABASE] Connecting to: {sanitized}")
+
     return create_async_engine(
         database_url,
         pool_size=settings.database_pool_size,
