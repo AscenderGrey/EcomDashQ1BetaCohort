@@ -1,5 +1,5 @@
 import { Page, Layout, Card, Text, BlockStack, InlineStack, InlineGrid, Badge } from "@shopify/polaris";
-import { TrendingUpIcon, PackageIcon, ReceiptIcon } from "@shopify/polaris-icons";
+import { ChartHistogramGrowthIcon, PackageIcon, ReceiptIcon } from "@shopify/polaris-icons";
 import { useDashboardStats } from "../services/api";
 import { StatsCard } from "../components/StatsCard";
 import { InsightsList } from "../components/InsightsList";
@@ -20,7 +20,7 @@ export default function Dashboard() {
               prefix="$"
               comparison={stats?.revenueDelta ?? 0}
               loading={isLoading}
-              icon={TrendingUpIcon}
+              icon={ChartHistogramGrowthIcon}
             />
             <StatsCard
               title="Orders"
