@@ -11,7 +11,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
 from uuid import UUID
 
-from arq import create_pool
+from arq import create_pool, cron
 from arq.connections import ArqRedis, RedisSettings
 
 from app.core.config import settings
@@ -379,19 +379,12 @@ class WorkerSettings:
         check_adaptive_trigger,
     ]
 
-    # Cron jobs
+    # Cron jobs - must use cron() function, not dict format
     cron_jobs = [
         # Batch analysis every 6 hours
-        {
-            "coroutine": batch_analysis_job,
-            "hour": {0, 6, 12, 18},
-            "minute": 0,
-        },
+        cron(batch_analysis_job, hour={0, 6, 12, 18}, minute=0),
         # Adaptive trigger check every 15 minutes
-        {
-            "coroutine": check_adaptive_trigger,
-            "minute": {0, 15, 30, 45},
-        },
+        cron(check_adaptive_trigger, minute={0, 15, 30, 45}),
     ]
 
     redis_settings = get_redis_settings()
